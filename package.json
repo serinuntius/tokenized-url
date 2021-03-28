@@ -1,0 +1,10 @@
+{
+  "name": "url-nft",
+  "version": "0.1.0",
+  "description": "tokenized web pages.",
+  "main": "index.js",
+  "author": "serinuntius <wasab1gj@gmail.com>",
+  "license": "MIT",
+  "workspaces": ["packages/**"],
+  "private": true
+}
