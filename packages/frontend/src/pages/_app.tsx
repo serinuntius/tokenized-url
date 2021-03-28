@@ -5,12 +5,22 @@ import { RecoilRoot } from 'recoil';
 import 'tailwindcss/tailwind.css';
 import '../styles/globals.css';
 import 'react-notifications/lib/notifications.css';
+import { Web3ReactProvider } from '@web3-react/core';
+import { Web3Provider } from '@ethersproject/providers';
+import { NotificationContainer } from 'react-notifications';
+
+function getLibrary(provider: any) {
+    return new Web3Provider(provider);
+}
 
 const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
     return (
-        <RecoilRoot>
-            <Component {...pageProps} />
-        </RecoilRoot>
+        <Web3ReactProvider getLibrary={getLibrary}>
+            <RecoilRoot>
+                <Component {...pageProps} />
+                <NotificationContainer />
+            </RecoilRoot>
+        </Web3ReactProvider>
     );
 };
 
