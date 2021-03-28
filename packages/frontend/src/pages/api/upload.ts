@@ -1,5 +1,4 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import puppeteer from 'puppeteer';
 import chrome from 'chrome-aws-lambda';
 import fetch from 'node-fetch';
 import IPFS from 'ipfs';
@@ -7,7 +6,7 @@ import IPFS from 'ipfs';
 export default async (req: NextApiRequest, res: NextApiResponse) => {
     const { url } = req.body;
 
-    const browser = await puppeteer.launch({
+    const browser = await chrome.puppeteer.launch({
         args: chrome.args,
         executablePath: await chrome.executablePath,
         headless: chrome.headless,
