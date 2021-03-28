@@ -4,7 +4,7 @@ import { Web3Provider } from '@ethersproject/providers';
 import classNames from 'classnames';
 import { TokenizedUrl__factory } from '@/types/index';
 import { NotificationManager } from 'react-notifications';
-import Link from 'next/Link';
+import Link from 'next/link';
 import { Spinner } from '@/components/atoms/Sippiner';
 
 export const TokenizedForm: React.FC = () => {
