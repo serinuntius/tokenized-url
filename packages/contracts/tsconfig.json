@@ -4,8 +4,12 @@
     "module": "commonjs",
     "strict": true,
     "esModuleInterop": true,
-    "outDir": "dist"
+    "outDir": "dist",
+    "typeRoots": ["types"]
   },
   "include": ["./scripts", "./test"],
-  "files": ["./hardhat.config.ts"]
+  "files": [
+    "./hardhat.config.ts",
+    "types/task.d.ts"
+  ]
 }
