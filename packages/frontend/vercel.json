@@ -1,6 +1,6 @@
 {
   "functions": {
-    "src/api/upload.ts": {
+    "src/pages/api/upload.ts": {
       "memory": 2048
     }
   }
