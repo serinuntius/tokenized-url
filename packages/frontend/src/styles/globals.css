@@ -1,0 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body,
+body > div:first-child,
+div#__next,
+div#__next > div {
+    height: 100%;
+    font-family: 'Lato', sans-serif;
+}
+
+.notification-container {
+    pointer-events: none;
+}

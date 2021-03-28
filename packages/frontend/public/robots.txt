@@ -1,0 +1,5 @@
+User-agent: Googlebot
+User-agent: *
+Allow: /
+
+Sitemap: https://tokenized-url.unpland.com/sitemap.xml
