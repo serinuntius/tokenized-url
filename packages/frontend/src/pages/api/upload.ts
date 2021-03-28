@@ -1,12 +1,17 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import puppeteer from 'puppeteer';
+import chrome from 'chrome-aws-lambda';
 import fetch from 'node-fetch';
 import IPFS from 'ipfs';
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
     const { url } = req.body;
 
-    const browser = await puppeteer.launch();
+    const browser = await puppeteer.launch({
+        args: chrome.args,
+        executablePath: await chrome.executablePath,
+        headless: chrome.headless,
+    });
     const page = await browser.newPage();
     const userAgent =
         'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.72 Safari/537.36';

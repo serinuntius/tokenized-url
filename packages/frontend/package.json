@@ -20,6 +20,7 @@
     "@web3-react/core": "^6.1.9",
     "@web3-react/injected-connector": "^6.0.7",
     "@web3-react/torus-connector": "^6.1.9",
+    "chrome-aws-lambda": "^8.0.0",
     "classnames": "^2.2.6",
     "ipfs": "^0.54.4",
     "next": "10.0.7",
