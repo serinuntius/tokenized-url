@@ -2,13 +2,13 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import chrome from 'chrome-aws-lambda';
 import IpfsClient from 'ipfs-http-client';
-import { v4 as uuidv4 } from 'uuid';
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
     const { url } = req.body;
+    console.info(url);
 
     const browser = await chrome.puppeteer.launch({
-        args: chrome.args,
+        args: [...chrome.args, '--proxy-server=http://198.13.63.91:3128'],
         executablePath: await chrome.executablePath,
         headless: chrome.headless,
     });
@@ -22,12 +22,14 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     });
 
     if (url.indexOf('twitter.com') > 0) {
-        await page.waitForSelector('article');
+        try {
+            await page.waitForSelector('article', { timeout: 3000 });
+        } catch (e) {
+            console.error(e);
+        }
     }
     const title = await page.title();
 
-    const _uuid = uuidv4();
-    console.log(_uuid);
     const image = await page.screenshot({
         path: `/tmp/1.png`,
         fullPage: true,
