@@ -35,7 +35,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
     // @ts-ignore
     const node = IpfsClient('https://ipfs.infura.io:5001');
-    const imgResult = await node.add(image);
+    const imgResult = await node.add(image as Buffer);
     await node.pin.add(imgResult.path);
 
     const imgUrl = `https://ipfs.io/ipfs/${imgResult.path}`;
