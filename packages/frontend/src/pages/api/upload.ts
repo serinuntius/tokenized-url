@@ -2,7 +2,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import chrome from 'chrome-aws-lambda';
 import IpfsClient from 'ipfs-http-client';
-import { v4 as uuidv4 } from 'uuid';
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
     const { url } = req.body;
@@ -22,12 +21,10 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     });
 
     if (url.indexOf('twitter.com') > 0) {
-        await page.waitForSelector('article');
+        await page.waitForSelector('article', { timeout: 3000 });
     }
     const title = await page.title();
 
-    const _uuid = uuidv4();
-    console.log(_uuid);
     const image = await page.screenshot({
         path: `/tmp/1.png`,
         fullPage: true,
