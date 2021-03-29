@@ -26,7 +26,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     const title = await page.title();
 
     const image = await page.screenshot({
-        path: '/tmp/1.png',
+        type: 'png',
         fullPage: true,
     });
     await browser.close();
