@@ -1,7 +1,7 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import type { NextApiRequest, NextApiResponse } from 'next';
 import chrome from 'chrome-aws-lambda';
-import fetch from 'node-fetch';
-import IPFS from 'ipfs';
+import IpfsClient from 'ipfs-http-client';
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
     const { url } = req.body;
@@ -31,8 +31,10 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     });
     await browser.close();
 
-    const node = await IPFS.create({});
-    const imgResult = await node.add(image as Buffer);
+    // @ts-ignore
+    const node = IpfsClient('https://ipfs.infura.io:5001');
+    const imgResult = await node.add(image);
+    await node.pin.add(imgResult.path);
 
     const imgUrl = `https://ipfs.io/ipfs/${imgResult.path}`;
     console.log(`imageUrl: ${imgUrl}`);
@@ -40,15 +42,13 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     const metadata = {
         name: title,
         description: url,
-        image: `https://ipfs.io/ipfs/${imgResult.path}`,
+        image: imgUrl,
     };
 
     const metadataResult = await node.add(JSON.stringify(metadata));
     const metadataUrl = `https://ipfs.io/ipfs/${metadataResult.path}`;
     console.log(`metadataUrl: ${metadataUrl}`);
+    await node.pin.add(metadataResult.path);
 
-    // ipfs.ioにキャッシュを乗せるために一度fetchしておく
-    await Promise.all([fetch(imgUrl), fetch(metadataUrl)]);
-    await node.stop();
-    res.status(200).json({ metadataUrl });
+    res.status(200).json({ metadataUrl: '' });
 };
