@@ -2,6 +2,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import chrome from 'chrome-aws-lambda';
 import IpfsClient from 'ipfs-http-client';
+import { v4 as uuidv4 } from 'uuid';
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
     const { url } = req.body;
@@ -25,8 +26,9 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     }
     const title = await page.title();
 
+    const _uuid = uuidv4();
     const image = await page.screenshot({
-        type: 'png',
+        path: `/tmp/${_uuid}.png`,
         fullPage: true,
     });
     await browser.close();
