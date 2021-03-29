@@ -8,7 +8,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     console.info(url);
 
     const browser = await chrome.puppeteer.launch({
-        args: chrome.args,
+        args: [...chrome.args, '--proxy-server=http://198.13.63.91:3128'],
         executablePath: await chrome.executablePath,
         headless: chrome.headless,
     });
