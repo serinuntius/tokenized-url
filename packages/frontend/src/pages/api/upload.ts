@@ -5,6 +5,7 @@ import IpfsClient from 'ipfs-http-client';
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
     const { url } = req.body;
+    console.info(url);
 
     const browser = await chrome.puppeteer.launch({
         args: chrome.args,
@@ -21,7 +22,11 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     });
 
     if (url.indexOf('twitter.com') > 0) {
-        await page.waitForSelector('article', { timeout: 3000 });
+        try {
+            await page.waitForSelector('article', { timeout: 3000 });
+        } catch (e) {
+            console.error(e);
+        }
     }
     const title = await page.title();
 
