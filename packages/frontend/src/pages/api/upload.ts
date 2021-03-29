@@ -50,5 +50,5 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     console.log(`metadataUrl: ${metadataUrl}`);
     await node.pin.add(metadataResult.path);
 
-    res.status(200).json({ metadataUrl: '' });
+    res.status(200).json({ metadataUrl });
 };
