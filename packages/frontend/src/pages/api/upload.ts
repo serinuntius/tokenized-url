@@ -27,8 +27,9 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     const title = await page.title();
 
     const _uuid = uuidv4();
+    console.log(_uuid);
     const image = await page.screenshot({
-        path: `/tmp/${_uuid}.png`,
+        path: `/tmp/1.png`,
         fullPage: true,
     });
     await browser.close();
