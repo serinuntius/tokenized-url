@@ -24,7 +24,6 @@ export const TokenizedForm: React.FC = () => {
     const tokenizedHandler = async () => {
         if (!library || !account || isMinting) return;
         if (!tokenizeUrl) {
-            console.log('hoge');
             NotificationManager.error('tokenize url is required.');
             return;
         }
