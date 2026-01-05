@@ -28,11 +28,11 @@
     "mint": "hardhat run scripts/mint.ts"
   },
   "dependencies": {
-    "@openzeppelin/contracts": "^3.4.1",
+    "@openzeppelin/contracts": "^5.4.0",
     "@types/yargs": "^15.0.13",
     "dotenv": "^8.2.0",
     "ipfs": "^0.54.4",
-    "node-fetch": "^2.6.1",
+    "node-fetch": "^3.3.2",
     "puppeteer": "^8.0.0",
     "yargs": "^15.4.1"
   }
