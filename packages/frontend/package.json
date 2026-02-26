@@ -24,8 +24,8 @@
     "classnames": "^2.2.6",
     "ipfs": "^0.54.4",
     "ipfs-http-client": "^49.0.4",
-    "next": "10.0.7",
-    "node-fetch": "^2.6.1",
+    "next": "15.5.10",
+    "node-fetch": "^3.3.2",
     "puppeteer-core": "^8.0.0",
     "react": "17.0.1",
     "react-device-detect": "^1.15.0",
@@ -33,7 +33,7 @@
     "react-hook-form": "^6.15.4",
     "react-notifications": "^1.7.2",
     "recoil": "^0.1.2",
-    "sharp": "^0.27.2",
+    "sharp": "^0.34.5",
     "uuid": "^8.3.2"
   },
   "devDependencies": {
